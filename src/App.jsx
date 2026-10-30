@@ -7,7 +7,7 @@ import Upcoming from "./components/Upcoming.jsx";
 import DayDialog from "./components/DayDialog.jsx";
 
 export default function App() {
-  const { tasks, addTask, toggleTask, deleteTask } = useTasks();
+  const { tasks, addTask, toggleTask, deleteTask, error } = useTasks();
   const [view, setView] = useState(() => {
     const d = new Date();
     return new Date(d.getFullYear(), d.getMonth(), 1);
@@ -38,6 +38,8 @@ export default function App() {
       <header className="hero">
         <h1>Obaveze</h1>
       </header>
+
+      {error && <div className="notice">{error}</div>}
 
       <div className="layout">
         <Calendar

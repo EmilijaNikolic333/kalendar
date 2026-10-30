@@ -143,11 +143,13 @@ aside { display: flex; flex-direction: column; gap: 24px; }
 aside h3 { margin: 0 0 14px; font-size: 20px; font-weight: 800; letter-spacing: -.01em; color: var(--navy); }
 form { display: flex; flex-direction: column; gap: 12px; }
 label { font-size: 12px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); display: flex; flex-direction: column; gap: 6px; }
-input, textarea {
+input, textarea, select {
   font: inherit; font-size: 14px; letter-spacing: normal; text-transform: none; color: var(--text);
   background: var(--lilac-bg); border: 1px solid var(--line); border-radius: 14px; padding: 10px 12px; width: 100%;
 }
-input:focus, textarea:focus { outline: none; border-color: var(--lilac); box-shadow: 0 0 0 3px rgba(183, 104, 220, .2); }
+.time-pick { display: flex; align-items: center; gap: 6px; color: var(--text); }
+.time-pick select { cursor: pointer; }
+input:focus, textarea:focus, select:focus { outline: none; border-color: var(--lilac); box-shadow: 0 0 0 3px rgba(183, 104, 220, .2); }
 textarea { resize: vertical; min-height: 76px; }
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
 

@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { LECTURES } from "./data/lectures.js";
+import { ACTIVITIES } from "./data/activities.js";
 import { useTasks } from "./hooks/useTasks.js";
 import Calendar from "./components/Calendar.jsx";
 import TaskForm from "./components/TaskForm.jsx";
 import Upcoming from "./components/Upcoming.jsx";
 import DayDialog from "./components/DayDialog.jsx";
+
+// Stalni termini iz koda (predavanja + nedeljne aktivnosti)
+const FIXED = [...LECTURES, ...ACTIVITIES];
 
 export default function App() {
   const { tasks, addTask, toggleTask, deleteTask, error } = useTasks();
@@ -45,20 +49,20 @@ export default function App() {
         <Calendar
           view={view}
           setView={setView}
-          lectures={LECTURES}
+          lectures={FIXED}
           tasks={tasks}
           onDayClick={setOpenDate}
         />
 
         <aside>
           <TaskForm onAdd={handleAdd} preset={formPreset} />
-          <Upcoming lectures={LECTURES} tasks={tasks} {...itemActions} />
+          <Upcoming lectures={FIXED} tasks={tasks} {...itemActions} />
         </aside>
       </div>
 
       <DayDialog
         date={openDate}
-        lectures={LECTURES}
+        lectures={FIXED}
         tasks={tasks}
         onClose={() => setOpenDate(null)}
         onAddForDay={(date) => {

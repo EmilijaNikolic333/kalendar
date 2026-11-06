@@ -3,6 +3,7 @@ const MAX_SHOWN = 3;
 
 function eventClass(ev) {
   if (ev.type === "lecture") return ev.cancelled ? "cancelled" : "lecture";
+  if (ev.type === "activity") return "activity";
   return "task" + (ev.done ? " done" : "");
 }
 

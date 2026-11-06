@@ -20,6 +20,8 @@
   --lecture-bg: #e7edf8;
   --task: #8e3fbf;
   --task-bg: var(--lilac-soft);
+  --activity: #b03a74;
+  --activity-bg: #fbe6f0;
   --cancel: #a3a6b8;
 }
 * { box-sizing: border-box; }
@@ -110,6 +112,7 @@ button.primary:hover { background: var(--navy-deep); }
   overflow: hidden; overflow-wrap: anywhere;
 }
 .ev.lecture { background: var(--lecture-bg); color: var(--lecture); }
+.ev.activity { background: var(--activity-bg); color: var(--activity); }
 .ev.task { background: var(--task-bg); color: var(--task); }
 .ev.task.done { text-decoration: line-through; opacity: .55; }
 .ev.cancelled { background: transparent; color: var(--cancel); text-decoration: line-through; border: 1px dashed var(--cancel); }
@@ -139,6 +142,7 @@ button.primary:hover { background: var(--navy-deep); }
 .legend .l1::before { background: var(--lecture); }
 .legend .l2::before { background: var(--lilac); }
 .legend .l3::before { background: var(--cancel); }
+.legend .l4::before { background: var(--activity); }
 
 aside { display: flex; flex-direction: column; gap: 24px; }
 aside h3 { margin: 0 0 14px; font-size: 20px; font-weight: 800; letter-spacing: -.01em; color: var(--navy); }
@@ -159,6 +163,7 @@ textarea { resize: vertical; min-height: 76px; }
 .item::before { content: ""; position: absolute; left: 0; top: 12px; bottom: 12px; width: 3px; border-radius: 3px; background: var(--line); }
 .item.lecture::before { background: var(--navy); }
 .item.task::before { background: var(--lilac); }
+.item.activity::before { background: var(--activity); }
 .item .when { font-size: 12px; color: var(--muted); }
 .item .what { font-size: 14px; font-weight: 600; color: var(--navy); word-wrap: break-word; }
 .item .actions { display: flex; gap: 6px; margin-top: 8px; }

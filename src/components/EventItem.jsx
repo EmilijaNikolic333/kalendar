@@ -5,7 +5,7 @@ export default function EventItem({ ev, showDate, onToggle, onDelete }) {
   const when =
     (showDate ? formatDate(ev.date) + " · " : "") +
     (ev.type === "lecture" ? `${ev.time}–${ev.end} · ${ev.room}` : ev.time);
-  const cls = ev.type === "lecture" ? "lecture" : "task" + (ev.done ? " done" : "");
+  const cls = ev.type === "task" ? "task" + (ev.done ? " done" : "") : ev.type;
 
   return (
     <li className={"item " + cls}>

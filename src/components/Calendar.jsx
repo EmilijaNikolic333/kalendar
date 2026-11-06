@@ -45,6 +45,7 @@ export default function Calendar({ view, setView, lectures, tasks, onDayClick })
       <div className="legend">
         <span className="l1">Predavanje</span>
         <span className="l2">Moja obaveza</span>
+        <span className="l4">Trening / ples</span>
         <span className="l3">Otkazano</span>
       </div>
     </section>

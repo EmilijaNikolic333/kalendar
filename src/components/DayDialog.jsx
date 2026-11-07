@@ -29,7 +29,7 @@ export default function DayDialog({ date, lectures, tasks, onClose, onAddForDay,
             )}
           </ul>
           <div className="dlg-actions">
-            <button onClick={() => onAddForDay(date)}>Dodaj obavezu za ovaj dan</button>
+            {onAddForDay && <button onClick={() => onAddForDay(date)}>Dodaj obavezu za ovaj dan</button>}
             <button className="primary" onClick={onClose}>Zatvori</button>
           </div>
         </>

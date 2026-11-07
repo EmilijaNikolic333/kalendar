@@ -9,13 +9,18 @@ create table if not exists public.obaveze (
   created_at timestamptz not null default now()
 );
 
--- Svako sa linkom sme da čita i menja obaveze (bez prijave)
+-- Svi mogu da gledaju obaveze, a menja ih samo prijavljena vlasnica
+-- (email mora biti isti kao OWNER_EMAIL u src/lib/supabase.js)
 alter table public.obaveze enable row level security;
 
-create policy "svi citaju"  on public.obaveze for select using (true);
-create policy "svi dodaju"  on public.obaveze for insert with check (true);
-create policy "svi menjaju" on public.obaveze for update using (true) with check (true);
-create policy "svi brisu"   on public.obaveze for delete using (true);
+create policy "svi citaju" on public.obaveze for select using (true);
+create policy "vlasnica dodaje" on public.obaveze for insert to authenticated
+  with check (auth.jwt() ->> 'email' = 'nikolicemilija03@gmail.com');
+create policy "vlasnica menja" on public.obaveze for update to authenticated
+  using (auth.jwt() ->> 'email' = 'nikolicemilija03@gmail.com')
+  with check (auth.jwt() ->> 'email' = 'nikolicemilija03@gmail.com');
+create policy "vlasnica brise" on public.obaveze for delete to authenticated
+  using (auth.jwt() ->> 'email' = 'nikolicemilija03@gmail.com');
 
 -- Da se promene sa drugih uređaja vide odmah
 alter publication supabase_realtime add table public.obaveze;

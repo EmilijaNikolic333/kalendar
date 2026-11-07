@@ -49,6 +49,10 @@ body {
   display: inline-flex; align-items: center; gap: 8px;
 }
 .pill-tag::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--lilac); }
+.top-right { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; justify-content: flex-end; }
+.login { display: flex; flex-direction: row; flex-wrap: wrap; align-items: center; gap: 6px; justify-content: flex-end; }
+.login input { width: 150px; padding: 8px 12px; }
+.login-error { width: 100%; text-align: right; font-size: 13px; color: #a3263f; }
 
 .hero { margin: 36px 0 28px; }
 .notice { margin: -12px 0 20px; padding: 10px 14px; border-radius: 14px; background: #fde8ec; color: #a3263f; font-size: 14px; }

@@ -19,7 +19,7 @@ export default function EventItem({ ev, showDate, onToggle, onDelete }) {
           ev.text
         )}
       </div>
-      {ev.type === "task" && (
+      {ev.type === "task" && onToggle && (
         <div className="actions">
           <button onClick={() => onToggle(ev.id)}>{ev.done ? "Vrati" : "Završeno"}</button>
           <button onClick={() => onDelete(ev.id)}>Obriši</button>

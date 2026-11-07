@@ -2,6 +2,8 @@ import { useState } from "react";
 import { LECTURES } from "./data/lectures.js";
 import { ACTIVITIES } from "./data/activities.js";
 import { useTasks } from "./hooks/useTasks.js";
+import { useAuth } from "./hooks/useAuth.js";
+import LoginBox from "./components/LoginBox.jsx";
 import Calendar from "./components/Calendar.jsx";
 import TaskForm from "./components/TaskForm.jsx";
 import Upcoming from "./components/Upcoming.jsx";
@@ -12,6 +14,7 @@ const FIXED = [...LECTURES, ...ACTIVITIES];
 
 export default function App() {
   const { tasks, addTask, toggleTask, deleteTask, error } = useTasks();
+  const { canEdit, canLogin, loggedIn, login, logout } = useAuth();
   const [view, setView] = useState(() => {
     const d = new Date();
     return new Date(d.getFullYear(), d.getMonth(), 1);
@@ -30,13 +33,17 @@ export default function App() {
     setView(new Date(y, m - 1, 1));
   };
 
-  const itemActions = { onToggle: toggleTask, onDelete: handleDelete };
+  // Bez prijave se obaveze samo gledaju
+  const itemActions = canEdit ? { onToggle: toggleTask, onDelete: handleDelete } : {};
 
   return (
     <div className="wrap">
       <div className="topbar">
         <div className="logo">Moj kalendar</div>
-        <span className="pill-tag">MAS 2026/27</span>
+        <div className="top-right">
+          <span className="pill-tag">MAS 2026/27</span>
+          {canLogin && <LoginBox loggedIn={loggedIn} onLogin={login} onLogout={logout} />}
+        </div>
       </div>
 
       <header className="hero">
@@ -55,7 +62,7 @@ export default function App() {
         />
 
         <aside>
-          <TaskForm onAdd={handleAdd} preset={formPreset} />
+          {canEdit && <TaskForm onAdd={handleAdd} preset={formPreset} />}
           <Upcoming lectures={FIXED} tasks={tasks} {...itemActions} />
         </aside>
       </div>
@@ -65,10 +72,14 @@ export default function App() {
         lectures={FIXED}
         tasks={tasks}
         onClose={() => setOpenDate(null)}
-        onAddForDay={(date) => {
-          setOpenDate(null);
-          setFormPreset({ date });
-        }}
+        onAddForDay={
+          canEdit
+            ? (date) => {
+                setOpenDate(null);
+                setFormPreset({ date });
+              }
+            : undefined
+        }
         {...itemActions}
       />
     </div>

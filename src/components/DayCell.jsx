@@ -34,7 +34,7 @@ export default function DayCell({ day, events, isOtherMonth, isToday, onClick })
           {ev.type === "lecture" ? (
             <>
               <span className="t">{ev.time} · {ev.room.split(" ")[0]}</span>
-              <span className="x">Predavanje</span>
+              <span className="x">{ev.short ?? "Predavanje"}</span>
             </>
           ) : (
             <>

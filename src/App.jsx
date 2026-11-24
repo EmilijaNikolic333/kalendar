@@ -41,7 +41,6 @@ export default function App() {
       <div className="topbar">
         <div className="logo">Moj kalendar</div>
         <div className="top-right">
-          <span className="pill-tag">MAS 2026/27</span>
           {canLogin && <LoginBox loggedIn={loggedIn} onLogin={login} onLogout={logout} />}
         </div>
       </div>
